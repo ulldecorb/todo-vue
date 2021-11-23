@@ -1,41 +1,77 @@
 <template>
-  <div id="app">
-    <img alt="React logo" src="./assets/react-2.svg">
-    <HelloWorld msg="This is a prop"/>
+  <div>
+    <div id="header"></div>
+
+    <div id="main-container">
+      <h2>TODOS</h2>
+      <Todos v-bind:todoslist="copyTodos" />
+    </div>    
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+// import HelloWorld from './components/HelloWorld';
+// import Search from './components/Search';
+import Todos from './components/Todos';
+// import TodoAdd from './components/TodoAdd';
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    Todos
+  },
+  data(){
+    return {
+      todos: [
+        {
+          id: 0,
+          title: 'Create my first VUE App',
+          complete: false
+        },
+        {
+          id: 1,
+          title: 'Test VUE App',
+          complete: false
+        },
+        {
+          id: 2,
+          title: 'Enjoy afternoon',
+          complete: false
+        },
+      ],
+      copyTodos: []
+    }
+  },
+  created(){
+    this.copyTodos = [...this.todos];
   }
 }
 </script>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-img {
-  height: 200px;
-  width: 200px;
-  animation-name: rotate-logo;
-  animation-duration: 4s;
-  animation-iteration-count: infinite;
-  animation-timing-function: linear;
+* {
+  box-sizing: border-box;
 }
 
-@keyframes rotate-logo {
-  0% {transform: rotate(0deg)}
-  100% {transform: rotate(360deg)}
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 1.5em;
+  padding: 0;
+  margin: 0;
+}
+
+#main-container {
+  border: solid 1px #ccc;
+  width: 600px;
+  margin: 100px auto;
+}
+
+#header {
+  background: #000;
+  padding: 10px;
+}
+
+h2 {
+  padding: 0 10px;
 }
 </style>
