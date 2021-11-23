@@ -1,7 +1,8 @@
 <template>
   <div>
-    <div id="header"></div>
-
+    <div id="header">
+      <Search v-on:query-change="querySearch" />
+    </div>
     <div id="main-container">
       <h2>TODOS</h2>
       <TodoAdd v-on:add-todo="addTodo" />
@@ -12,14 +13,14 @@
 
 <script>
 // import HelloWorld from './components/HelloWorld';
-// import Search from './components/Search';
+import Search from './components/Search';
 import Todos from './components/Todos';
 import TodoAdd from './components/TodoAdd';
 
 export default {
   name: 'App',
   components: {
-    Todos, TodoAdd
+    Todos, TodoAdd, Search
   },
   methods: {
     deleteTodo(id){
@@ -28,6 +29,17 @@ export default {
     },
     addTodo(todo){
       this.copyTodos = [...this.todos,todo];
+    },
+    querySearch(query){
+      if (query.trim === ''){
+        this.copyTodos = [...this.todos];
+      } else {
+        const temp = this.todos.filter(todo => {
+          return todo.title.includes(query)
+        });
+        this.copyTodos = [...temp];
+      }
+
     }
   },
   data(){
