@@ -4,6 +4,7 @@
 
     <div id="main-container">
       <h2>TODOS</h2>
+      <TodoAdd v-on:add-todo="addTodo" />
       <Todos v-bind:todoslist="copyTodos" v-on:delete-todo="deleteTodo"/>
     </div>    
   </div>
@@ -13,17 +14,20 @@
 // import HelloWorld from './components/HelloWorld';
 // import Search from './components/Search';
 import Todos from './components/Todos';
-// import TodoAdd from './components/TodoAdd';
+import TodoAdd from './components/TodoAdd';
 
 export default {
   name: 'App',
   components: {
-    Todos
+    Todos, TodoAdd
   },
   methods: {
     deleteTodo(id){
       this.todos = this.todos.filter(todo => todo.id !== id);
       this.copyTodos = [...this.todos];
+    },
+    addTodo(todo){
+      this.copyTodos = [...this.todos,todo];
     }
   },
   data(){
@@ -32,17 +36,17 @@ export default {
         {
           id: 0,
           title: 'Create my first VUE App',
-          complete: true
+          completed: true
         },
         {
           id: 1,
           title: 'Test VUE App',
-          complete: false
+          completed: false
         },
         {
           id: 2,
           title: 'Enjoy afternoon',
-          complete: false
+          completed: false
         },
       ],
       copyTodos: []
