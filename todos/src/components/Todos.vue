@@ -2,7 +2,7 @@
     <div>
         <!-- <div>{{todo.title}}</div> -->
         <div v-bind:key="todo.id" v-for="todo in todoslist">
-            <TodoItem v-bind:todo="todo" />
+            <TodoItem v-bind:todo="todo" v-on:delete-todo="$emit('delete-todo', todo.id)" />
         </div>
     </div>
 </template>

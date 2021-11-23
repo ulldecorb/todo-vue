@@ -4,7 +4,7 @@
 
     <div id="main-container">
       <h2>TODOS</h2>
-      <Todos v-bind:todoslist="copyTodos" />
+      <Todos v-bind:todoslist="copyTodos" v-on:delete-todo="deleteTodo"/>
     </div>    
   </div>
 </template>
@@ -20,13 +20,19 @@ export default {
   components: {
     Todos
   },
+  methods: {
+    deleteTodo(id){
+      this.todos = this.todos.filter(todo => todo.id !== id);
+      this.copyTodos = [...this.todos];
+    }
+  },
   data(){
     return {
       todos: [
         {
           id: 0,
           title: 'Create my first VUE App',
-          complete: false
+          complete: true
         },
         {
           id: 1,
