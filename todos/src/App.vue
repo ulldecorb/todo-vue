@@ -1,7 +1,7 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <img alt="React logo" src="./assets/react-2.svg">
+    <HelloWorld msg="This is a prop"/>
   </div>
 </template>
 
@@ -24,5 +24,18 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
+}
+img {
+  height: 200px;
+  width: 200px;
+  animation-name: rotate-logo;
+  animation-duration: 4s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+}
+
+@keyframes rotate-logo {
+  0% {transform: rotate(0deg)}
+  100% {transform: rotate(360deg)}
 }
 </style>
